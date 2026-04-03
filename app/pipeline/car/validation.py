@@ -6,7 +6,7 @@ from app.utils.logger import get_logger
 logger = get_logger(__name__)
 
 # Mock active policies — replace with DB/external lookup
-ACTIVE_POLICIES = {"POL001", "POL002", "POL003", "CAR001", "CAR002", "POL12345"}
+ACTIVE_POLICIES = {"POL001", "POL002", "POL003", "CAR001", "CAR002", "CAR003"}
 
 def compute_image_hash(file_path: str) -> str:
     """Compute SHA256 hash of a file."""

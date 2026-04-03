@@ -110,7 +110,8 @@ async def submit_car_claim(
         description, 
         "car",
         consistency_score=consistency,
-        detected_labels=extraction.get("labels", [])
+        detected_labels=extraction.get("labels", []),
+        estimated_amount=estimated_amount
     )
     policy_score = policy_res["score"]
     groq_reasoning = policy_res["reasoning"]
