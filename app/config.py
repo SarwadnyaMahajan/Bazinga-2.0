@@ -20,10 +20,10 @@ class Settings(BaseSettings):
     auto_approve_threshold: float = 0.75
     reject_threshold: float = 0.5
 
-    # Scoring weights (User defined: 0.4*C + 0.35*E + 0.25*P)
-    consistency_weight: float = 0.4
+    # Scoring weights (User defined: 0.25*C + 0.35*E + 0.40*P)
+    consistency_weight: float = 0.25
     evidence_weight: float = 0.35
-    policy_weight: float = 0.25
+    policy_weight: float = 0.40
 
     # Email
     smtp_host: str = "smtp.gmail.com"

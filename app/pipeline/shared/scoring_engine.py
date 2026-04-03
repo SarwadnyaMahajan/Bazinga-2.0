@@ -6,7 +6,7 @@ logger = get_logger(__name__)
 def compute_final_score(consistency: float, evidence: float, policy: float) -> dict:
     """
     Final Score Calculation:
-    0.4 * Consistency + 0.35 * Evidence + 0.25 * Policy
+    0.25 * Consistency + 0.35 * Evidence + 0.40 * Policy
     
     Returns: { 
         "consistency_score": float, 
@@ -16,8 +16,8 @@ def compute_final_score(consistency: float, evidence: float, policy: float) -> d
     }
     """
     try:
-        # Use user-defined weights (0.4, 0.35, 0.25)
-        # Final Score = (0.4 * C) + (0.35 * E) + (0.25 * P)
+        # Use user-defined weights (0.25, 0.35, 0.40)
+        # Final Score = (0.25 * C) + (0.35 * E) + (0.40 * P)
         
         final_score = (
             (settings.consistency_weight * consistency) +
