@@ -1,5 +1,6 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.db.mongodb import connect_to_mongo, close_mongo_connection
 from app.api.car.routes import router as car_router
 from app.api.travel.routes import router as travel_router
@@ -19,6 +20,19 @@ app = FastAPI(
     description="Intelligent Insurance Claim Processing with Straight-Through Processing",
     version="1.0.0",
     lifespan=lifespan
+)
+
+# CORS — allow frontend origins
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://stp-insurance.vercel.app",
+        "http://localhost:3000",
+        "http://localhost:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(health_router)
