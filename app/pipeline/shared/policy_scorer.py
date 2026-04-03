@@ -11,7 +11,8 @@ def compute_policy_score(
     user_description: str, 
     claim_type: str,
     consistency_score: float = 1.0,
-    detected_labels: list[str] = None
+    detected_labels: list[str] = None,
+    estimated_amount: float = 0.0
 ) -> dict:
     """
     Policy Score (P) & Groq Reasoning:
@@ -33,6 +34,7 @@ def compute_policy_score(
     
     CLAIM TYPE: {claim_type}
     USER DESCRIPTION: {user_description}
+    ESTIMATED AMOUNT: {estimated_amount}
     
     EVIDENCE FINDINGS (from Computer Vision/OCR):
     - Consistency Score: {consistency_score} (1.0 = Perfect match, 0.0 = Complete mismatch)
@@ -43,9 +45,12 @@ def compute_policy_score(
     
     TASK:
     1. Determine if the claim is likely covered based on the policy clauses.
-    2. IMPORTANT: If the EVIDENCE FINDINGS show a low consistency score or the Detected Items do not match the USER DESCRIPTION, you MUST lower your score and explain the mismatch in your reasoning.
-    3. Provide a score from 0.0 to 1.0 (highly likely covered = 1.0, clearly excluded or fraudulent = 0.0).
-    4. Provide a brief explanation for your choice.
+    2. Cross-check the ESTIMATED AMOUNT against the RELEVANT POLICY CLAUSES. Look for coverage limits, deductibles, or maximum liability caps. If the amount is suspicious or exceeds limits, factor this into your score and reasoning.
+    3. IMPORTANT: If the EVIDENCE FINDINGS show a low consistency score or the Detected Items do not match the USER DESCRIPTION, you MUST lower your score and explain the mismatch in your reasoning.
+    4. Provide a score from 0.0 to 1.0 (highly likely covered = 1.0, clearly excluded or fraudulent = 0.0).
+    5. Provide a brief explanation for your choice.
+    6. Do not display the consistency score into the reasoning string.
+    7. Give detailed reasoning which also includes proofs and references from the policy clauses.
     
     OUTPUT FORMAT (JSON):
     {{

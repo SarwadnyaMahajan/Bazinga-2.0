@@ -114,7 +114,8 @@ async def submit_travel_claim(
         query, 
         "travel",
         consistency_score=consistency,
-        detected_labels=list(extraction.get("extracted_fields", {}).values())
+        detected_labels=list(extraction.get("extracted_fields", {}).values()),
+        estimated_amount=estimated_amount
     )
     policy_score = policy_res["score"]
     groq_reasoning = policy_res["reasoning"]

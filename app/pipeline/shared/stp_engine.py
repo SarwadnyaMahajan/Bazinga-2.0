@@ -15,7 +15,19 @@ def make_stp_decision(scores: dict) -> dict:
     scores: output from scoring_engine.compute_final_score()
     Returns: { "decision": str, "reason": str }
     """
+    policy_val = scores.get("policy_score", 0.0)
     final = scores["final_score"]
+
+    # --- MANDATORY POLICY CHECK ---
+    # Even if other scores are high, a low policy score means rejection.
+    if policy_val < settings.reject_threshold:
+        decision = "REJECT"
+        reason = (
+            f"Policy coverage validation failed (Score: {policy_val:.2f}). "
+            f"The claim does not match recognized policy clauses or exceeds strict limits."
+        )
+        logger.warning(f"STP Policy Hard-Reject: {policy_val:.2f}")
+        return {"decision": decision, "reason": reason}
 
     if final >= settings.auto_approve_threshold:
         decision = "AUTO_APPROVE"
