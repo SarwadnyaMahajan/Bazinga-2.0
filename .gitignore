@@ -1,0 +1,30 @@
+# Environment & Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+
+# App Data (Private)
+uploads/
+tmp/
+temp/
+
+# AI/Search Indexes
+policy_store/index/
+policy_store/bm25/
+
+# OS Specific
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
