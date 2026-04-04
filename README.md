@@ -1,3 +1,10 @@
+## `Bazinga 2.0`
+## Members:
+ - Sarwadnya Mahajan 
+ - Kanaad Limaye
+ - Vedant Lavale
+ - Vishwajeet More
+
 # Insurance STP — Intelligent Claim Processing
 
 Automated insurance claim processing with Straight-Through Processing (STP) for Car and Travel claims.
