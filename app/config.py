@@ -8,6 +8,14 @@ class Settings(BaseSettings):
     roboflow_model_id: str = ""
     roboflow_api_url: str = "https://detect.roboflow.com"
 
+    # CORS
+    allowed_origins: list[str] = [
+        "http://localhost:5173",
+        "http://localhost:5173/",
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:5173/"
+    ]
+
     # Groq (LLM for RAG)
     groq_api_key: str = ""
     groq_model_name: str = "llama3-8b-8192"
